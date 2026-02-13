@@ -15,7 +15,7 @@ body {
     font-family: Arial, sans-serif;
     color: white;
     background: url("https://images.unsplash.com/photo-1509042239860-f550ce710b93") no-repeat center center/cover;
-
+    transition: 1s;
 }
 
 .overlay {
@@ -35,6 +35,8 @@ h1 {
     font-size: 28px;
     line-height: 1.6;
     letter-spacing: 1px;
+    opacity: 0;
+    animation: fadeIn 3s ease-in forwards;
 }
 
 button {
@@ -46,12 +48,19 @@ button {
     cursor: pointer;
     background: #ff4b7d;
     color: white;
+    box-shadow: 0 0 15px #ff4b7d;
     transition: 0.3s;
 }
 
 button:hover {
     background: white;
     color: #ff4b7d;
+    box-shadow: 0 0 25px white;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -76,10 +85,19 @@ button:hover {
 
 <script>
 function enterSite() {
-    alert("Next part coming soon... 😌");
+    document.body.style.opacity = "0";
+
+    setTimeout(() => {
+        document.body.innerHTML = `
+            <div style="height:100vh; display:flex; justify-content:center; align-items:center; flex-direction:column; background:black; color:white; text-align:center;">
+                <h1 style="font-size:28px;">Rewinding to the day we met… ⏳</h1>
+                <p style="margin-top:20px; font-size:18px;">And everything changed forever ❤️</p>
+            </div>
+        `;
+        document.body.style.opacity = "1";
+    }, 1000);
 }
 </script>
 
 </body>
 </html>
-
