@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For You ❤️</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
+<title>Happy Birthday ❤️</title>
 <style>
 body{
     margin:0;
@@ -13,82 +10,60 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    font-family:'Poppins', sans-serif;
-    color:white;
+    background:linear-gradient(to bottom,#ff9a9e,#fad0c4);
     overflow:hidden;
-}
-
-/* Glass Card */
-.container{
-    text-align:center;
-    padding:50px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(20px);
-    border-radius:20px;
-    box-shadow:0 0 40px rgba(0,0,0,0.5);
-    animation:fadeIn 2s ease-in-out;
-}
-
-h1{
-    font-weight:300;
-    letter-spacing:2px;
-}
-
-button{
-    margin-top:30px;
-    padding:12px 30px;
-    font-size:18px;
-    border:none;
-    border-radius:30px;
-    background:#ff4b6e;
+    font-family: 'Comic Sans MS', cursive;
     color:white;
-    cursor:pointer;
-    transition:0.3s;
+    text-align:center;
 }
 
-button:hover{
-    transform:scale(1.1);
-    box-shadow:0 0 20px #ff4b6e;
+/* Rose Petals */
+.petal{
+    position:absolute;
+    width:15px;
+    height:15px;
+    background:red;
+    border-radius:50%;
+    animation:fall linear infinite;
 }
 
-#message{
-    margin-top:25px;
-    font-size:20px;
-    line-height:1.6;
-    opacity:0;
-    transition:1.5s;
+@keyframes fall{
+    0%{ transform:translateY(-10vh) rotate(0deg);}
+    100%{ transform:translateY(110vh) rotate(360deg);}
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
+.container{
+    z-index:2;
+}
+
+a{
+    display:inline-block;
+    margin-top:30px;
+    padding:10px 25px;
+    background:white;
+    color:#ff4b6e;
+    border-radius:20px;
+    text-decoration:none;
+    font-weight:bold;
 }
 </style>
 </head>
-
 <body>
 
 <div class="container">
-    <h1>Hey... I Made Something For You ❤️</h1>
-    <button onclick="showMessage()">Tap For Surprise ✨</button>
-    <div id="message">
-        I don't know how to say everything in words...  
-        But tonight, I just want you to know —  
-        You mean more to me than you can imagine.  
-        Thank you for being in my life. 🌙💖
-    </div>
+    <h1>Wishing you a very happy birthday<br>
+    my dear chhhota sa ittu sa gudiya bacha 🎂💖</h1>
+
+    <a href="page2.html">Click here to open 🎁</a>
 </div>
 
-<!-- Background Music -->
-<audio id="bgmusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
-
 <script>
-function showMessage(){
-    document.getElementById("message").style.opacity = "1";
-    document.getElementById("bgmusic").play();
+for(let i=0;i<40;i++){
+    let petal=document.createElement("div");
+    petal.classList.add("petal");
+    petal.style.left=Math.random()*window.innerWidth+"px";
+    petal.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(petal);
 }
 </script>
 
