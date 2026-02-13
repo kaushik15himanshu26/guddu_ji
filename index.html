@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Special Question</title>
+<title>For You ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -13,121 +13,56 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-    overflow:hidden;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
     font-family:'Poppins', sans-serif;
+    color:white;
+    overflow:hidden;
 }
 
-/* Glass Effect Container */
+/* Glass Card */
 .container{
     text-align:center;
-    position:relative;
-    z-index:2;
-    padding:40px;
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(15px);
+    padding:50px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
     border-radius:20px;
-    box-shadow:0 8px 30px rgba(0,0,0,0.2);
-    animation:fadeIn 1.2s ease-in-out;
+    box-shadow:0 0 40px rgba(0,0,0,0.5);
+    animation:fadeIn 2s ease-in-out;
 }
 
 h1{
-    font-size:40px;
-    color:white;
-    margin-bottom:20px;
+    font-weight:300;
+    letter-spacing:2px;
 }
 
-/* Buttons */
 button{
-    padding:12px 25px;
+    margin-top:30px;
+    padding:12px 30px;
     font-size:18px;
-    margin:10px;
     border:none;
-    border-radius:25px;
+    border-radius:30px;
+    background:#ff4b6e;
+    color:white;
     cursor:pointer;
     transition:0.3s;
-    font-weight:600;
 }
 
-#yes{
-    background:#00c853;
-    color:white;
-    box-shadow:0 0 15px #00c853;
-}
-
-#yes:hover{
+button:hover{
     transform:scale(1.1);
-    box-shadow:0 0 25px #00ff6a;
-}
-
-#no{
-    background:#d50000;
-    color:white;
-    position:absolute;
+    box-shadow:0 0 20px #ff4b6e;
 }
 
 #message{
-    font-size:28px;
-    color:white;
-    margin-top:20px;
-    animation:fadeIn 1s ease-in-out;
+    margin-top:25px;
+    font-size:20px;
+    line-height:1.6;
+    opacity:0;
+    transition:1.5s;
 }
 
-/* Falling petals */
-.petal{
-    position:absolute;
-    top:-50px;
-    width:20px;
-    height:20px;
-    background:red;
-    border-radius:50%;
-    animation:fall linear infinite;
-}
-
-@keyframes fall{
-    0%{ transform:translateY(0) rotate(0deg); opacity:1;}
-    100%{ transform:translateY(100vh) rotate(360deg); opacity:0;}
-}
-
-/* Fade animation */
 @keyframes fadeIn{
-    from{opacity:0; transform:translateY(20px);}
+    from{opacity:0; transform:translateY(30px);}
     to{opacity:1; transform:translateY(0);}
-}
-
-/* Floating soft hearts in background */
-.heart{
-    position:absolute;
-    width:18px;
-    height:18px;
-    background:rgba(255,0,0,0.6);
-    transform:rotate(45deg);
-    animation:float 6s linear infinite;
-}
-
-.heart::before,
-.heart::after{
-    content:"";
-    position:absolute;
-    width:18px;
-    height:18px;
-    background:rgba(255,0,0,0.6);
-    border-radius:50%;
-}
-
-.heart::before{
-    top:-9px;
-    left:0;
-}
-
-.heart::after{
-    left:-9px;
-    top:0;
-}
-
-@keyframes float{
-    0%{ transform:translateY(100vh) rotate(45deg); opacity:1;}
-    100%{ transform:translateY(-10vh) rotate(45deg); opacity:0;}
 }
 </style>
 </head>
@@ -135,56 +70,26 @@ button{
 <body>
 
 <div class="container">
-    <h1>Will You Be Mine? ❤️</h1>
-    <button id="yes">Yes 💚</button>
-    <button id="no">No ❌</button>
-    <div id="message"></div>
+    <h1>Hey... I Made Something For You ❤️</h1>
+    <button onclick="showMessage()">Tap For Surprise ✨</button>
+    <div id="message">
+        I don't know how to say everything in words...  
+        But tonight, I just want you to know —  
+        You mean more to me than you can imagine.  
+        Thank you for being in my life. 🌙💖
+    </div>
 </div>
 
+<!-- Background Music -->
+<audio id="bgmusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-
-let noBtn = document.getElementById("no");
-let yesBtn = document.getElementById("yes");
-let message = document.getElementById("message");
-
-/* NO button bhagega */
-noBtn.addEventListener("mouseover", function(){
-    let x = Math.random() * (window.innerWidth - 100);
-    let y = Math.random() * (window.innerHeight - 100);
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-});
-
-/* YES click effect */
-yesBtn.addEventListener("click", function(){
-    message.innerHTML = "Yayyyy!!! 🎉💖 You made my day!";
-    createPetals();
-});
-
-/* Petal animation */
-function createPetals(){
-    for(let i=0;i<30;i++){
-        let petal = document.createElement("div");
-        petal.classList.add("petal");
-        petal.style.left = Math.random() * window.innerWidth + "px";
-        petal.style.animationDuration = (Math.random() * 3 + 2) + "s";
-        document.body.appendChild(petal);
-    }
+function showMessage(){
+    document.getElementById("message").style.opacity = "1";
+    document.getElementById("bgmusic").play();
 }
-
-/* Background floating hearts */
-function createHearts(){
-    let heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.style.left = Math.random()*window.innerWidth + "px";
-    heart.style.animationDuration = (Math.random()*3 + 3) + "s";
-    document.body.appendChild(heart);
-
-    setTimeout(()=>{ heart.remove(); },6000);
-}
-
-setInterval(createHearts,700);
-
 </script>
 
 </body>
