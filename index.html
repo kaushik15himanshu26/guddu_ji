@@ -1,91 +1,261 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Happy Birthday ❤️</title>
+<title>Happy Birthday</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:radial-gradient(circle at center,#3a1c71,#1f0036,#000000);
-    overflow:hidden;
-    font-family:'Cinzel', serif;
-    color:white;
-    text-align:center;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Floating Petals */
-.petal{
-    position:absolute;
-    width:12px;
-    height:12px;
-    background:#ff4d6d;
-    border-radius:50%;
-    opacity:0.7;
-    animation:fall linear infinite;
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    font-family: 'Cinzel', serif;
+    color: white;
+    text-align: center;
+    position: relative;
 }
 
-@keyframes fall{
-    0%{transform:translateY(-10vh) rotate(0deg);}
-    100%{transform:translateY(110vh) rotate(360deg);}
+/* Beautiful Rose Tree Background */
+.bg-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-image: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: brightness(0.7) saturate(1.2);
 }
 
-.container{
-    z-index:2;
-    animation:fadeIn 2s ease-in-out;
+/* Dark Overlay for readability */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(ellipse at center, rgba(20,0,30,0.4) 0%, rgba(10,0,15,0.7) 100%);
 }
 
-h1{
-    font-size:38px;
-    letter-spacing:2px;
-    line-height:1.5;
+/* Rose Petals - More Realistic */
+.petal {
+    position: fixed;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(ellipse at 30% 30%, #ff8fab, #ff4d6d, #c9184a);
+    border-radius: 50% 0 50% 50%;
+    opacity: 0.8;
+    animation: fall linear infinite;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));
 }
 
-a{
-    display:inline-block;
-    margin-top:40px;
-    padding:12px 30px;
-    border:1px solid white;
-    border-radius:30px;
-    text-decoration:none;
-    color:white;
-    transition:0.4s;
+.petal::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: inherit;
+    transform: rotate(45deg);
 }
 
-a:hover{
-    background:white;
-    color:black;
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(110vh) rotate(720deg) scale(0.5);
+        opacity: 0;
+    }
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
+/* Floating Animation for petals */
+@keyframes sway {
+    0%, 100% { margin-left: 0; }
+    50% { margin-left: 30px; }
+}
+
+.container {
+    z-index: 2;
+    animation: fadeIn 2s ease-in-out;
+    padding: 40px;
+    max-width: 600px;
+}
+
+h1 {
+    font-size: 36px;
+    letter-spacing: 2px;
+    line-height: 1.6;
+    text-shadow: 
+        0 0 20px rgba(255,77,109,0.5),
+        0 4px 15px rgba(0,0,0,0.5);
+    background: linear-gradient(135deg, #fff 0%, #ffd6e0 50%, #fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.sparkle {
+    display: inline-block;
+    animation: sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+}
+
+a {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 14px 35px;
+    border: 2px solid rgba(255,255,255,0.8);
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+    background: rgba(255,77,109,0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+a:hover::before {
+    left: 100%;
+}
+
+a:hover {
+    background: rgba(255,255,255,0.9);
+    color: #c9184a;
+    border-color: #ff4d6d;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255,77,109,0.4);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Decorative corner flowers */
+.corner-flower {
+    position: fixed;
+    font-size: 40px;
+    opacity: 0.6;
+    animation: float 4s ease-in-out infinite;
+}
+
+.corner-flower.top-left { top: 20px; left: 20px; }
+.corner-flower.top-right { top: 20px; right: 20px; animation-delay: 1s; }
+.corner-flower.bottom-left { bottom: 20px; left: 20px; animation-delay: 2s; }
+.corner-flower.bottom-right { bottom: 20px; right: 20px; animation-delay: 3s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 26px;
+        padding: 0 10px;
+    }
+    
+    a {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+    
+    .corner-flower {
+        font-size: 25px;
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- Background Rose Image -->
+<div class="bg-layer"></div>
+<div class="overlay"></div>
+
+<!-- Corner Decorations -->
+<div class="corner-flower top-left"></div>
+<div class="corner-flower top-right"></div>
+<div class="corner-flower bottom-left"></div>
+<div class="corner-flower bottom-right"></div>
+
 <div class="container">
     <h1>
-    Wishing you a very happy birthday<br>
-    my dear chhhota sa ittu sa gudiya bacha ✨
+        Wishing you a very happy birthday<br>
+        my dear chhhota sa ittu sa gudiya bacha <span class="sparkle">✨</span>
     </h1>
 
     <a href="page2.html">Enter The Surprise 🎁</a>
 </div>
 
 <script>
-for(let i=0;i<50;i++){
-    let petal=document.createElement("div");
+// Create beautiful falling rose petals
+const colors = [
+    'radial-gradient(ellipse at 30% 30%, #ffb3c1, #ff4d6d, #a4133c)',
+    'radial-gradient(ellipse at 30% 30%, #ffc8dd, #ff758f, #ff4d6d)',
+    'radial-gradient(ellipse at 30% 30%, #fff0f3, #ffb3c1, #ff758f)',
+    'radial-gradient(ellipse at 30% 30%, #ff8fab, #fb6f92, #c9184a)'
+];
+
+for (let i = 0; i < 35; i++) {
+    let petal = document.createElement("div");
     petal.classList.add("petal");
-    petal.style.left=Math.random()*window.innerWidth+"px";
-    petal.style.animationDuration=(Math.random()*4+3)+"s";
+    
+    // Random properties
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    petal.style.animationDelay = Math.random() * 5 + "s";
+    petal.style.width = (Math.random() * 10 + 10) + "px";
+    petal.style.height = (Math.random() * 10 + 10) + "px";
+    petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+    petal.style.animation = `fall ${Math.random() * 5 + 5}s linear infinite, sway ${Math.random() * 3 + 2}s ease-in-out infinite`;
+    
     document.body.appendChild(petal);
 }
 </script>
