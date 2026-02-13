@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Memories 🎂</title>
+<style>
+body{
+    margin:0;
+    background:black;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+}
+
+img{
+    max-width:80%;
+    margin-top:30px;
+    border-radius:10px;
+}
+
+video{
+    max-width:80%;
+    margin-top:20px;
+}
+</style>
+</head>
+<body>
+
+<h2>Our Beautiful Journey ❤️</h2>
+
+<audio autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<img id="slide" src="img1.jpg">
+
+<script>
+let images=["img1.jpg","img2.jpg","img3.jpg"];
+let i=0;
+
+setInterval(function(){
+    i=(i+1)%images.length;
+    document.getElementById("slide").src=images[i];
+},3000);
+</script>
+
+<br><br>
+
+<h3>And now... something from my heart 🎥</h3>
+
+<video controls>
+    <source src="video.mp4" type="video/mp4">
+</video>
+
+<h2 style="margin-top:40px;">
+Happy Birthday to the most precious person in my life 💖  
+May your smile shine forever ✨
+</h2>
+
+</body>
+</html>
