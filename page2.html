@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For You ❤️</title>
+<title>A Little Secret ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 body{
     margin:0;
@@ -9,32 +12,80 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#2c3e50,#4ca1af);
-    font-family:Arial;
+    background:linear-gradient(to bottom,#000428,#004e92);
+    font-family:'Cinzel', serif;
     color:white;
     text-align:center;
+    overflow:hidden;
+}
+
+/* Stars */
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    animation:blink 2s infinite alternate;
+}
+
+@keyframes blink{
+    from{opacity:0.2;}
+    to{opacity:1;}
+}
+
+.container{
+    animation:fadeIn 2s ease-in-out;
+}
+
+h2{
+    font-weight:400;
+    letter-spacing:2px;
+    line-height:1.6;
 }
 
 a{
-    margin-top:25px;
     display:inline-block;
-    padding:10px 25px;
-    background:white;
-    color:#2c3e50;
-    border-radius:20px;
+    margin-top:40px;
+    padding:12px 30px;
+    border:1px solid white;
+    border-radius:30px;
     text-decoration:none;
-    font-weight:bold;
+    color:white;
+    transition:0.4s;
+}
+
+a:hover{
+    background:white;
+    color:black;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
 }
 </style>
 </head>
+
 <body>
 
-<div>
-    <h2>You are the most beautiful chapter of my life 💕<br>
-    And today is all about celebrating you ✨</h2>
+<div class="container">
+    <h2>
+    Some people come into life quietly…<br>
+    But they become the most beautiful part of it ✨
+    </h2>
 
-    <a href="page3.html">Open a little memory ✨</a>
+    <a href="page3.html">Unlock A Memory 🌙</a>
 </div>
+
+<script>
+for(let i=0;i<100;i++){
+    let star=document.createElement("div");
+    star.classList.add("star");
+    star.style.left=Math.random()*window.innerWidth+"px";
+    star.style.top=Math.random()*window.innerHeight+"px";
+    document.body.appendChild(star);
+}
+</script>
 
 </body>
 </html>
