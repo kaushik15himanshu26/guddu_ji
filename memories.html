@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Memories 🎂</title>
+<title>Our Memories ❤️</title>
 <style>
 body{
     margin:0;
@@ -11,15 +11,30 @@ body{
     font-family:Arial;
 }
 
-img{
-    max-width:80%;
+/* Slideshow box */
+#slide{
+    width:70%;
+    height:400px;
+    background:#222;
     margin-top:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
     border-radius:10px;
 }
 
-video{
-    max-width:80%;
-    margin-top:20px;
+/* Video box */
+.video-box{
+    width:70%;
+    height:300px;
+    background:#111;
+    margin:30px auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:20px;
+    border-radius:10px;
 }
 </style>
 </head>
@@ -27,29 +42,20 @@ video{
 
 <h2>Our Beautiful Journey ❤️</h2>
 
+<!-- Background Music (Optional for now) -->
+<!-- Later you can add:
 <audio autoplay loop>
     <source src="song.mp3" type="audio/mpeg">
 </audio>
+-->
 
-<img id="slide" src="img1.jpg">
+<div id="slide">
+    Image Slideshow Will Appear Here 📸
+</div>
 
-<script>
-let images=["img1.jpg","img2.jpg","img3.jpg"];
-let i=0;
-
-setInterval(function(){
-    i=(i+1)%images.length;
-    document.getElementById("slide").src=images[i];
-},3000);
-</script>
-
-<br><br>
-
-<h3>And now... something from my heart 🎥</h3>
-
-<video controls>
-    <source src="video.mp4" type="video/mp4">
-</video>
+<div class="video-box">
+    Your Special Video Will Play Here 🎥
+</div>
 
 <h2 style="margin-top:40px;">
 Happy Birthday to the most precious person in my life 💖  
