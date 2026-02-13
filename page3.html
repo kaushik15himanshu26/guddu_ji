@@ -1,66 +1,331 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Our Story ❤️</title>
+    <title>Our Story</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+        /* --- BACKGROUND --- */
+        .bg-scene {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -3;
+            background: url('https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=1920&q=80') no-repeat center center/cover;
+        }
 
-<style>
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:radial-gradient(circle at center,#1a2a6c,#0f0c29,#000000);
-    font-family:'Cinzel', serif;
-    color:white;
-    text-align:center;
-}
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            background: linear-gradient(to bottom, 
+                rgba(50, 20, 40, 0.4) 0%, 
+                rgba(20, 10, 30, 0.7) 100%);
+        }
 
-.container{
-    animation:fadeIn 2s ease-in-out;
-}
+        /* --- FLYING BIRDS (Real Looking) --- */
+        .bird {
+            position: absolute;
+            z-index: 1;
+            opacity: 0.9;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            animation: flyPath linear infinite;
+            pointer-events: none;
+        }
 
-h2{
-    letter-spacing:2px;
-    line-height:1.7;
-}
+        /* Bird Wing Flap Animation */
+        @keyframes flapWings {
+            0% { transform: scaleY(1); }
+            50% { transform: scaleY(0.6); }
+            100% { transform: scaleY(1); }
+        }
 
-a{
-    display:inline-block;
-    margin-top:40px;
-    padding:12px 30px;
-    border:1px solid white;
-    border-radius:30px;
-    text-decoration:none;
-    color:white;
-    transition:0.4s;
-}
+        @keyframes flyPath {
+            0% { transform: translateX(-150px) translateY(0); }
+            25% { transform: translateX(25vw) translateY(-40px); }
+            50% { transform: translateX(50vw) translateY(10px); }
+            75% { transform: translateX(75vw) translateY(-30px); }
+            100% { transform: translateX(110vw) translateY(0); }
+        }
 
-a:hover{
-    background:white;
-    color:black;
-}
+        /* --- CUTE FACE --- */
+        .cute-container {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            animation: floatContainer 4s ease-in-out infinite;
+        }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
-}
-</style>
+        @keyframes floatContainer {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-15px); }
+        }
+
+        .face-circle {
+            width: 110px;
+            height: 110px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border: 3px solid white;
+        }
+
+        .eyes-box {
+            position: absolute;
+            top: 35px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .eye {
+            width: 12px;
+            height: 16px;
+            background-color: #333;
+            border-radius: 50%;
+            position: relative;
+            animation: eyeBlink 4s infinite;
+        }
+
+        .eye::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+        }
+
+        @keyframes eyeBlink {
+            0%, 90%, 100% { transform: scaleY(1); }
+            95% { transform: scaleY(0.1); }
+        }
+
+        .blush {
+            position: absolute;
+            width: 20px;
+            height: 12px;
+            background-color: rgba(255, 100, 100, 0.5);
+            border-radius: 50%;
+            top: 55px;
+        }
+        .blush.left { left: 15px; }
+        .blush.right { right: 15px; }
+
+        .smile {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 10px;
+            border-bottom: 3px solid #555;
+            border-radius: 0 0 50% 50%;
+        }
+
+        /* Hearts using CSS Shapes (No Emoji) */
+        .css-heart {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #ff6b6b;
+            transform: rotate(-45deg);
+            animation: popHeart 2s ease-in-out infinite;
+        }
+        .css-heart::before, .css-heart::after {
+            content: "";
+            width: 15px;
+            height: 15px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            position: absolute;
+        }
+        .css-heart::before { top: -7px; left: 0; }
+        .css-heart::after { left: 7px; top: 0; }
+
+        .h1 { top: -10px; left: -15px; animation-delay: 0s; }
+        .h2 { top: 20px; right: -20px; animation-delay: 0.5s; }
+        .h3 { bottom: 0px; left: -10px; animation-delay: 1s; }
+
+        @keyframes popHeart {
+            0%, 100% { transform: rotate(-45deg) scale(1); }
+            50% { transform: rotate(-45deg) scale(1.2); }
+        }
+
+        .love-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 42px;
+            color: white;
+            margin-top: 15px;
+            text-shadow: 0 2px 10px rgba(255, 50, 50, 0.6);
+            position: relative; /* Fix overlap */
+            z-index: 6;
+        }
+
+        /* --- MAIN CONTENT (TEXT FIXED) --- */
+        .container {
+            z-index: 10;
+            padding: 20px;
+            max-width: 700px;
+            animation: fadeUp 2s ease-out;
+            position: relative;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 26px;
+            letter-spacing: 1px;
+            line-height: 1.6;
+            color: white; /* Solid white color */
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 11;
+            /* Clear text shadow to avoid 'duplicate' look */
+            text-shadow: 0 2px 5px rgba(0,0,0,0.4); 
+        }
+
+        /* Sparkle Emoji styling */
+        .sparkle {
+            display: inline-block;
+            font-size: 1.2em;
+            animation: spinSparkle 3s linear infinite;
+        }
+
+        @keyframes spinSparkle {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: white;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            position: relative;
+            z-index: 11;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: white;
+            color: #ff6b6b;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h2 { font-size: 20px; padding: 0 10px; }
+            .love-text { font-size: 32px; }
+            .face-circle { width: 80px; height: 80px; }
+            .eyes-box { top: 25px; gap: 18px; }
+            .eye { width: 9px; height: 12px; }
+            .blush { top: 40px; width: 15px; height: 9px; }
+            .smile { bottom: 22px; width: 15px; height: 8px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
-    <h2>
-    Every smile, every laugh,<br>
-    every moment with you feels magical ✨<br><br>
-    Let’s relive something beautiful together…
-    </h2>
+    <div class="bg-scene"></div>
+    <div class="bg-overlay"></div>
 
-    <a href="memories.html">Begin The Journey ❤️</a>
-</div>
+    <!-- Cute Face Section -->
+    <div class="cute-container">
+        <div class="face-circle">
+            <div class="eyes-box">
+                <div class="eye"></div>
+                <div class="eye"></div>
+            </div>
+            <div class="blush left"></div>
+            <div class="blush right"></div>
+            <div class="smile"></div>
+            <!-- Pure CSS Hearts, no hidden emojis -->
+            <div class="css-heart h1"></div>
+            <div class="css-heart h2"></div>
+            <div class="css-heart h3"></div>
+        </div>
+        <div class="love-text">I Love You</div>
+    </div>
 
+    <!-- Main Content -->
+    <div class="container">
+        <h2>
+            Every smile, every laugh,<br>
+            every moment with you feels magical <span class="sparkle">✨</span><br><br>
+            Let's relive something beautiful together…
+        </h2>
+        <a href="memories.html" class="btn">Begin The Journey</a>
+    </div>
+
+    <script>
+        // --- FLYING BIRDS SCRIPT ---
+        
+        // High Quality Bird Image (Silhouette)
+        const birdUrl = "https://cdn-icons-png.flaticon.com/512/1903/1903154.png";
+
+        function createBird() {
+            const bird = document.createElement("img");
+            bird.src = birdUrl;
+            bird.classList.add("bird");
+            
+            // Random Position (Top of screen)
+            bird.style.top = (Math.random() * 30 + 5) + "%";
+            
+            // Random Size
+            const size = Math.random() * 20 + 30; // Size 30px to 50px
+            bird.style.width = size + "px";
+
+            // Flapping Speed
+            bird.style.animation = `flyPath ${Math.random() * 8 + 8}s linear infinite, flapWings 0.3s ease-in-out infinite`;
+            
+            document.body.appendChild(bird);
+
+            // Remove after crossing screen
+            setTimeout(() => {
+                bird.remove();
+            }, 16000);
+        }
+
+        // Generate birds slowly
+        setInterval(createBird, 3000);
+        
+        // Initial birds
+        setTimeout(createBird, 500);
+        setTimeout(createBird, 1500);
+    </script>
 </body>
 </html>
